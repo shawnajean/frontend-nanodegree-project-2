@@ -90,6 +90,7 @@ a {
 #skillsH3 {
   color: #1199C3;
   display: none;
+  padding-left: 0;
 }
 
 .blue {
@@ -102,7 +103,7 @@ a {
 }
 
 .white-text {
-  font-weight: bold;
+  font-weight: lighter;
   color: #FFFFFF;
 }
 
@@ -133,15 +134,13 @@ a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 10px 10px 10px 0;
+  margin-bottom: 35px;
 }
 
 .center-content {
-  padding-top: 2.5%;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 2.5%
+  padding: 2.5% 5% 1.5% 5%;
 }
 
 ul {
@@ -150,7 +149,7 @@ ul {
 
 .biopic {
   float: right;
-  padding: 10px;
+  padding: 10px 0 10px 10px;
   width: 200px;
   display: none;
 }

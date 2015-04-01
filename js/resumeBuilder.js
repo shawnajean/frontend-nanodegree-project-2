@@ -22,7 +22,7 @@ var bio = {
 		var formattedMobile = bio.contacts.mobile.replace(/\./g, "");
 		formattedMobile = HTMLmobile.replace(/%formattedData%/g, formattedMobile);
 		formattedMobile = formattedMobile.replace(/%data%/g, bio.contacts.mobile);
-		$("#topContacts").append(formattedMobile);
+		//$("#topContacts").append(formattedMobile);
 		$("#topContacts").append(HTMLemail.replace(/%data%/g, bio.contacts.email));
 		$("#topContacts").append(HTMLgithub.replace(/%data%/g, bio.contacts.github));
 		$("#topContacts").append(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
