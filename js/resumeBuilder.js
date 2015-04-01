@@ -15,9 +15,9 @@ var bio = {
 	],
 	"biopic" : "http://shawnajroberts.files.wordpress.com/2014/05/shawna-cropped.jpg",
 	"display" : function() {
+		$("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
 		$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 		$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
-		$("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
 
 		var formattedMobile = bio.contacts.mobile.replace(/\./g, "");
 		formattedMobile = HTMLmobile.replace(/%formattedData%/g, formattedMobile);
