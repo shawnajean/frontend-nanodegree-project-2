@@ -82,6 +82,7 @@ var education = {
 		for( school in education.schools ) {
 			$("#education").append(HTMLschoolStart);
 			schoolNameFormatted = HTMLschoolName.replace("%data%", education.schools[school].name);
+			schoolNameFormatted = schoolNameFormatted.replace("%url%", education.schools[school].url);
 			schoolNameFormatted = schoolNameFormatted.concat(HTMLschoolDegree.replace("%data%", education.schools[school].degree));
 			$(".education-entry:last").append(schoolNameFormatted);
 			$(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[school].dates));
@@ -109,20 +110,23 @@ var work = {
 			"title" : "Happiness Engineer",
 			"location" : "",
 			"dates" : "2014 - current",
-			"description" : "Build relationships based on trust which result in happy, passionate, loyal customers and colleagues. Help people use Automattic’s products, including WordPress.com, Jetpack, and Gravatar. Troubleshoot, investigate, and create detailed bug reports including screenshots, steps to reproduce, and number of users affected. Create, update and edit support documentation. Build a community of support by sharing knowledge and insight amongst team members."
+			"description" : "Build relationships based on trust which result in happy, passionate, loyal customers and colleagues. Help people use Automattic’s products, including WordPress.com, Jetpack, and Gravatar. Troubleshoot, investigate, and create detailed bug reports including screenshots, steps to reproduce, and number of users affected. Create, update and edit support documentation. Build a community of support by sharing knowledge and insight amongst team members.",
+			"url" : "https://automattic.com"
 		},
 		{
 			"employer" : "Hampshire College",
 			"title" : "Network Technician",
 			"location" : "Amherst, MA",
 			"dates" : "2012 - 2014",
-			"description" : "Assist Network Engineer in design, construction, and maintenance of campus network and phone infrastructure. Oversee physical network implementation. Provide support and troubleshooting for VoIP, POTS, CATV, and network infrastructure. Provided technical support to faculty and staff members."
+			"description" : "Assist Network Engineer in design, construction, and maintenance of campus network and phone infrastructure. Oversee physical network implementation. Provide support and troubleshooting for VoIP, POTS, CATV, and network infrastructure. Provided technical support to faculty and staff members.",
+			"url" : "https://hampshire.edu"
 		}
 	],
 	"display" : function() {
 		for( job in work.jobs ) {
 			$("#workExperience").append(HTMLworkStart);
 			var workFormatted = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+			workFormatted = workFormatted.replace("%url%", work.jobs[job].url);
 			workFormatted = workFormatted.concat(HTMLworkTitle.replace("%data%", work.jobs[job].title));
 			$(".work-entry:last").append(workFormatted);
 			$(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[job].location));
@@ -138,13 +142,16 @@ var projects = {
 			"title" : "Mockup to Website",
 			"dates" : "2015",
 			"description" : "Develop a responsive website from a PDF design mockup.",
-			"images" : ["images/197x148.gif"]
+			"images" : ["images/197x148.gif"],
+			"url" : "https://github.com/shawnajroberts/udacity-front-end-dev/tree/master/Projects/Project%201"
 		}
 	],
 	"display" : function() {
 		for ( project in projects.projects) {
 			$("#projects").append(HTMLprojectStart);
-			$(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.projects[project].title));
+			var titleFormatted = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+			titleFormatted = titleFormatted.replace("%url%", projects.projects[project].url);
+			$(".project-entry:last").append(titleFormatted);
 			$(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.projects[project].dates));
 			$(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.projects[project].description));
 			if( projects.projects[project].images.length > 0 )
