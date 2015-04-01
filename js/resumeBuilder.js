@@ -17,6 +17,7 @@ var bio = {
 	"display" : function() {
 		$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 		$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+		$("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
 
 		var formattedMobile = bio.contacts.mobile.replace(/\./g, "");
 		formattedMobile = HTMLmobile.replace(/%formattedData%/g, formattedMobile);
@@ -28,7 +29,7 @@ var bio = {
 		$("#topContacts").append(HTMLblog.replace(/%data%/g, bio.contacts.blog));
 		//$("#topContacts").append(HTMLlocation.replace(/%data%/g, bio.contacts.location));
 
-		$("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
+		
 		//$("#header").append(HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage));
 
 		if( bio.skills.length > 0 ) {
