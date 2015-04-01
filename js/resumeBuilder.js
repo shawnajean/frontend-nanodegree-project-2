@@ -107,7 +107,7 @@ var work = {
 		{
 			"employer" : "Automattic",
 			"title" : "Happiness Engineer",
-			"location" : "Remote",
+			"location" : "",
 			"dates" : "2014 - current",
 			"description" : "Build relationships based on trust which result in happy, passionate, loyal customers and colleagues. Help people use Automattic’s products, including WordPress.com, Jetpack, and Gravatar. Troubleshoot, investigate, and create detailed bug reports including screenshots, steps to reproduce, and number of users affected. Create, update and edit support documentation. Build a community of support by sharing knowledge and insight amongst team members."
 		},
