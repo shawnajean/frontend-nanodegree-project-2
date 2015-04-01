@@ -15,7 +15,7 @@
 
 h1 {
   font-size: 40px;
-  color: #F5A623;
+  color: #1199C3;
   line-height: 48px;
   display: inline;
 }
@@ -73,7 +73,7 @@ p {
 }
 
 a {
-  color: #1199C3;
+  color: #F5A623;
   text-decoration: none;
   margin-top: 10px;
   display: block;
@@ -87,16 +87,16 @@ a {
 }
 
 #skillsH3 {
-  color: #F5AE23;
+  color: #1199C3;
   display: none;
 }
 
-.orange {
-  background-color: #F5AE23;
+.blue {
+  background-color: #1199C3;
 }
 
-.orange-text {
-  color: #F5AE23;
+.blue-text {
+  color: #1199C3;
 }
 
 .white-text {
@@ -168,6 +168,10 @@ span {
 
 #letsConnect {
   text-align: center;
+}
+
+#letsConnect h2 {
+  color: #F3F3F3;
 }
 
 @media only screen and (max-width: 1024px) {
