@@ -18,12 +18,15 @@ var bio = {
 		$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 		$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 
-		$("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-		$("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-		$("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-		$("#topContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-		$("#topContacts").append(HTMLblog.replace("%data%", bio.contacts.blog));
-		//$("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+		var formattedMobile = bio.contacts.mobile.replace(/\./g, "");
+		formattedMobile = HTMLmobile.replace(/%formattedData%/g, formattedMobile);
+		formattedMobile = formattedMobile.replace(/%data%/g, bio.contacts.mobile);
+		$("#topContacts").append(formattedMobile);
+		$("#topContacts").append(HTMLemail.replace(/%data%/g, bio.contacts.email));
+		$("#topContacts").append(HTMLgithub.replace(/%data%/g, bio.contacts.github));
+		$("#topContacts").append(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
+		$("#topContacts").append(HTMLblog.replace(/%data%/g, bio.contacts.blog));
+		//$("#topContacts").append(HTMLlocation.replace(/%data%/g, bio.contacts.location));
 
 		$("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
 		$("#header").append(HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage));

@@ -104,6 +104,13 @@ a {
   color: #FFFFFF;
 }
 
+.white-text a{
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-top:0;
+  display: inline;
+}
+
 .gray {
   background-color: #F3F3F3;
   padding-bottom: 10px;
