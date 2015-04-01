@@ -29,7 +29,7 @@ var bio = {
 		//$("#topContacts").append(HTMLlocation.replace(/%data%/g, bio.contacts.location));
 
 		$("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
-		$("#header").append(HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage));
+		//$("#header").append(HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage));
 
 		if( bio.skills.length > 0 ) {
 			$("#header").append(HTMLskillsStart);
