@@ -38,12 +38,12 @@ var bio = {
 			}
 		}
 
-		$("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-		$("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-		$("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-		$("#footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-		$("#footerContacts").append(HTMLblog.replace("%data%", bio.contacts.blog));
-		//$("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+		$("#footerContacts").append(formattedMobile);
+		$("#footerContacts").append(HTMLemail.replace(/%data%/g, bio.contacts.email));
+		$("#footerContacts").append(HTMLgithub.replace(/%data%/g, bio.contacts.github));
+		$("#footerContacts").append(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
+		$("#footerContacts").append(HTMLblog.replace(/%data%/g, bio.contacts.blog));
+		//$("#footerContacts").append(HTMLlocation.replace(/%data%/g, bio.contacts.location));
 	}
 }
 
