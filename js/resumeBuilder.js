@@ -84,6 +84,9 @@ $(function() {
 		getSkills: function() {
 			return data.skills;
 		},
+		getJobs: function() {
+			return data.jobs;
+		},
 		getSchools: function() {
 			return data.schools;
 		},
@@ -94,18 +97,15 @@ $(function() {
 
 	var view = {
 		init: function() {
-			var bio,
-					contacts,
-					formattedMobile,
-					skillsList,
-					$skills,
-					schoolsList,
-					schoolNameFormatted,
-					courseList,
-					currentObject;
+			var formattingString,
+					currentList,
+					currentObject,
+					$skills;
 
 			this.header = $("#header");
-			this.contactsList = $("#topContacts");
+			this.contacts = $("#topContacts");
+
+			this.jobs = $("#workExperience");
 
 			this.education = $("#education");
 
@@ -114,76 +114,94 @@ $(function() {
 		render: function() {
 			view.renderBio();
 			view.renderSkills();
+			view.renderJobs();
 			view.renderSchools();
 			view.renderOnlineCourses();
 		},
 		renderBio: function() {
-			bio = controller.getBio();
-			contacts = bio.contacts;
+			currentList = controller.getBio();
 
-			this.header.prepend( HTMLbioPic.replace( "%data%", bio.biopic ) );
-			this.header.prepend( HTMLheaderRole.replace( "%data%", bio.role ) );
-			this.header.prepend( HTMLheaderName.replace( "%data%", bio.name ) );
+			this.header.prepend( HTMLbioPic.replace( "%data%", currentList.biopic ) );
+			this.header.prepend( HTMLheaderRole.replace( "%data%", currentList.role ) );
+			this.header.prepend( HTMLheaderName.replace( "%data%", currentList.name ) );
 
-			formattedMobile = contacts.mobile.replace( /\./g, "" );
-			formattedMobile = HTMLmobile.replace( /%formattedData%/g, formattedMobile );
-			formattedMobile = formattedMobile.replace( /%data%/g, contacts.mobile );
+			formattingString = currentList.contacts.mobile.replace( /\./g, "" );
+			formattingString = HTMLmobile.replace( /%formattedData%/g, formattingString );
+			formattingString = formattingString.replace( /%data%/g, currentList.contacts.mobile );
 
-			this.contactsList.append( formattedMobile );
-			this.contactsList.append( HTMLemail.replace( /%data%/g, contacts.email ) );
-			this.contactsList.append( HTMLgithub.replace( /%data%/g, contacts.github ) );
-			this.contactsList.append( HTMLtwitter.replace( /%data%/g, contacts.twitter ) );
-			this.contactsList.append( HTMLblog.replace( /%data%/g, contacts.blog ) );
+			this.contacts.append( formattingString );
+			this.contacts.append( HTMLemail.replace( /%data%/g, currentList.contacts.email ) );
+			this.contacts.append( HTMLgithub.replace( /%data%/g, currentList.contacts.github ) );
+			this.contacts.append( HTMLtwitter.replace( /%data%/g, currentList.contacts.twitter ) );
+			this.contacts.append( HTMLblog.replace( /%data%/g, currentList.contacts.blog ) );
 		},
 		renderSkills: function() {
-			skillsList = controller.getSkills();
+			currentList = controller.getSkills();
 
-			if( skillsList.length > 0 ) {
+			if( currentList.length > 0 ) {
 				this.header.append(HTMLskillsStart);
 
 				$skills = $("#skills");
 
-				for( skill in skillsList ) {
-					$skills.append( HTMLskills.replace( "%data%", skillsList[skill] ) );
+				for( skill in currentList ) {
+					$skills.append( HTMLskills.replace( "%data%", currentList[skill] ) );
 				}
 			}
 		},
-		renderSchools: function() {
-			schoolsList = controller.getSchools();
+		renderJobs: function() {
+			currentList = controller.getJobs();
 
-			for( school in schoolsList ) {
+			for( job in currentList ) {
+				this.jobs.append(HTMLworkStart);
+
+				currentObject = $(".work-entry:last");
+
+				formattingString = HTMLworkEmployer.replace("%data%", currentList[job].employer);
+				formattingString = formattingString.replace("%url%", currentList[job].url);
+				formattingString = formattingString.concat(HTMLworkTitle.replace("%data%", currentList[job].title));
+
+				currentObject.append(formattingString);
+				currentObject.append(HTMLworkLocation.replace("%data%", currentList[job].location));
+				currentObject.append(HTMLworkDates.replace("%data%", currentList[job].dates));
+				currentObject.append(HTMLworkDescription.replace("%data%", currentList[job].description));
+			}
+		},
+		renderSchools: function() {
+			currentList = controller.getSchools();
+
+			for( school in currentList ) {
 				this.education.append(HTMLschoolStart);
 
 				currentObject = $(".education-entry:last");
 
-				schoolNameFormatted = HTMLschoolName.replace("%data%", schoolsList[school].name);
-				schoolNameFormatted = schoolNameFormatted.replace("%url%", schoolsList[school].url);
-				schoolNameFormatted = schoolNameFormatted.concat(HTMLschoolDegree.replace("%data%", schoolsList[school].degree));
+				formattingString = HTMLschoolName.replace("%data%", currentList[school].name);
+				formattingString = formattingString.replace("%url%", currentList[school].url);
+				formattingString = formattingString.concat(HTMLschoolDegree.replace("%data%", currentList[school].degree));
 
-				currentObject.append(schoolNameFormatted);
-				currentObject.append(HTMLschoolDates.replace("%data%", schoolsList[school].dates));
-				currentObject.append(HTMLschoolLocation.replace("%data%", schoolsList[school].location));
-				currentObject.append(HTMLschoolMajor.replace("%data%", schoolsList[school].majors));
+				currentObject.append(formattingString);
+				currentObject.append(HTMLschoolDates.replace("%data%", currentList[school].dates));
+				currentObject.append(HTMLschoolLocation.replace("%data%", currentList[school].location));
+				currentObject.append(HTMLschoolMajor.replace("%data%", currentList[school].majors));
 			}
 		},
 		renderOnlineCourses: function() {
-			courseList = controller.getOnlineCourses();
+			currentList = controller.getOnlineCourses();
 
-			if( courseList.length > 0 ) {
+			if( currentList.length > 0 ) {
 				this.education.append(HTMLonlineClasses);
 
-				for( course in courseList ) {
+				for( course in currentList ) {
 					this.education.append(HTMLonlineStart);
 
 					currentObject = $(".online-entry:last");
 
-					courseNameFormatted = HTMLonlineTitle.replace("%data%", courseList[course].title);
-					courseNameFormatted = courseNameFormatted.replace("%url%", courseList[course].url);
-					courseNameFormatted = courseNameFormatted.concat(HTMLonlineSchool.replace("%data%", courseList[course].school));
+					formattingString = HTMLonlineTitle.replace("%data%", currentList[course].title);
+					formattingString = formattingString.replace("%url%", currentList[course].url);
+					formattingString = formattingString.concat(HTMLonlineSchool.replace("%data%", currentList[course].school));
 
-					currentObject.append(courseNameFormatted);
-					currentObject.append(HTMLonlineDates.replace("%data%", courseList[course].date));
-					//currentObject.append(HTMLonlineURL.replace("%data%", courseList[course].url));
+					currentObject.append(formattingString);
+					currentObject.append(HTMLonlineDates.replace("%data%", currentList[course].date));
+					//currentObject.append(HTMLonlineURL.replace("%data%", currentList[course].url));
 				}
 			}
 		}
@@ -195,35 +213,9 @@ $(function() {
 
 
 
-/*var education = {
+/*var work = {
 	"display" : function() {
 
-		$("#education").append(HTMLonlineClasses);
-		for( course in education.onlineCourses ) {
-			$("#education").append(HTMLonlineStart);
-			courseNameFormatted = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
-			courseNameFormatted = courseNameFormatted.replace("%url%", education.onlineCourses[course].url);
-			courseNameFormatted = courseNameFormatted.concat(HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school));
-			$(".online-entry:last").append(courseNameFormatted);
-			$(".online-entry:last").append(HTMLonlineDates.replace("%data%", education.onlineCourses[course].date));
-			//$(".online-entry:last").append(HTMLonlineURL.replace("%data%", education.onlineCourses[course].url));
-		}
-
-	}
-}
-
-var work = {
-	"display" : function() {
-		for( job in work.jobs ) {
-			$("#workExperience").append(HTMLworkStart);
-			var workFormatted = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-			workFormatted = workFormatted.replace("%url%", work.jobs[job].url);
-			workFormatted = workFormatted.concat(HTMLworkTitle.replace("%data%", work.jobs[job].title));
-			$(".work-entry:last").append(workFormatted);
-			$(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[job].location));
-			$(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[job].dates));
-			$(".work-entry:last").append(HTMLworkDescription.replace("%data%", work.jobs[job].description));
-		}
 	}
 }
 
