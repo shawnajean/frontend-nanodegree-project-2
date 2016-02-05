@@ -80,27 +80,32 @@ $(function() {
 		},
 		getBio: function() {
 			return data.bio;
+		},
+		getSkills: function() {
+			return data.skills;
 		}
 	};
 
 	var view = {
 		init: function() {
-			var bio;
+			var bio, skills, skillsList;
 
 			this.biopic = $('#biopic');
 			this.name = $('#name');
 			this.role = $('#role');
 			this.contactList = $('#topContacts');
 
+			this.header = $('#header');
+
 			view.render();
 		},
 		render: function() {
 			view.renderBio();
+			view.renderSkills();
 		},
 		renderBio: function() {
 			// add bio info to page
 			bio = controller.getBio();
-			console.log( bio.contacts );
 
 			this.biopic.attr( 'src', bio.biopic );
 			this.name.text( bio.name );
@@ -108,20 +113,48 @@ $(function() {
 
 			//mobile
 			var formattedMobile = bio.contacts.mobile.replace(/\./g, "");
-			this.contactList.append('<li class="flex-item"><span class="blue-text">mobile</span><span class="white-text"><a href="callto:' + formattedMobile + '">' + bio.contacts.mobile + '</a></span></li>');
+			this.contactList.append(
+				'<li class="flex-item"><span class="blue-text">mobile</span><span class="white-text"><a href="callto:' + formattedMobile + '">' + bio.contacts.mobile + '</a></span></li>'
+			);
+
 			//email
-			this.contactList.append('<li class="flex-item"><span class="blue-text">email</span><span class="white-text"><a href="mailto:' + bio.contacts.email + '">' + bio.contacts.email + '</a></span></li>');
+			this.contactList.append(
+				'<li class="flex-item"><span class="blue-text">email</span><span class="white-text"><a href="mailto:' + bio.contacts.email + '">' + bio.contacts.email + '</a></span></li>'
+			);
 
 			//github
-			this.contactList.append('<li class="flex-item"><span class="blue-text">github</span><span class="white-text"><a href="https://github.com/' + bio.contacts.github + '">' + bio.contacts.github + '</a></span></li>');
+			this.contactList.append(
+				'<li class="flex-item"><span class="blue-text">github</span><span class="white-text"><a href="https://github.com/' + bio.contacts.github + '">' + bio.contacts.github + '</a></span></li>'
+			);
 
 			//twitter
-			this.contactList.append('<li class="flex-item"><span class="blue-text">twitter</span><span class="white-text"><a href="https://twitter.com/' + bio.contacts.twitter + '">' + bio.contacts.twitter + '</a></span></li>');
+			this.contactList.append(
+				'<li class="flex-item"><span class="blue-text">twitter</span><span class="white-text"><a href="https://twitter.com/' + bio.contacts.twitter + '">' + bio.contacts.twitter + '</a></span></li>'
+			);
 
 			//blog
-			this.contactList.append('<li class="flex-item"><span class="blue-text">blog</span><span class="white-text"><a href="' + bio.contacts.blog + '">' + bio.contacts.blog + '</a></span></li>');
+			this.contactList.append(
+				'<li class="flex-item"><span class="blue-text">blog</span><span class="white-text"><a href="' + bio.contacts.blog + '">' + bio.contacts.blog + '</a></span></li>'
+			);
+		},
+		renderSkills: function() {
+			skills = controller.getSkills();
 
+			if( skills.length > 0 ) {
+				this.header.append(
+					'<h3 id="skillsH3">Skills at a Glance:</h3><ul id="skills" class="flex-box"></ul>'
+				);
+
+				skillsList = $('#skills');
+
+				skills.forEach( function( currentValue ) {
+					skillsList.append(
+						'<li class="flex-item"><span class="white-text">' + currentValue + '</span></li>'
+					);
+				});
+			}
 		}
+		
 	};
 
 	controller.init();
@@ -142,10 +175,6 @@ $(function() {
 
 /*var bio = {
 	"display" : function() {
-		$("#topContacts").append(HTMLemail.replace(/%data%/g, bio.contacts.email));
-		$("#topContacts").append(HTMLgithub.replace(/%data%/g, bio.contacts.github));
-		$("#topContacts").append(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
-		$("#topContacts").append(HTMLblog.replace(/%data%/g, bio.contacts.blog));
 
 		if( bio.skills.length > 0 ) {
 			$("#header").append(HTMLskillsStart);
