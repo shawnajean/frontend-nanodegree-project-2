@@ -75,11 +75,15 @@ $(function() {
 	};
 
 	var controller = {
-
+		init: function() {
+			view.render();
+		}
 	};
 
 	var view = {
+		render: function() {
 
+		}
 	};
 
 
