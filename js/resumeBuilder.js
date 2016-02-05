@@ -76,15 +76,22 @@ $(function() {
 	var controller = {
 		init: function() {
 			view.render();
+		},
+		getBio: function() {
+			return data.bio;
 		}
 	};
 
 	var view = {
 		init: function() {
 
+			view.render();
 		},
 		render: function() {
-
+			view.renderBio();
+		},
+		renderBio: function() {
+			
 		}
 	};
 
