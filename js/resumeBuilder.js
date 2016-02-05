@@ -3,73 +3,72 @@ $(function() {
 		name: "Shawna Jean",
 		role: "Web Developer",
 		contacts: {
-			"mobile" : "555.555.5555",
-			"email" : "hello@shawnajroberts.com",
-			"github" : "shawnajroberts",
-			"twitter" : "shawnajeanr",
-			"blog" : "http://shawnajroberts.com",
-			"location" : "Chicago, IL"
+			mobile : "555.555.5555",
+			email : "hello@shawnajroberts.com",
+			github : "shawnajroberts",
+			twitter : "shawnajeanr",
+			blog : "http://shawnajroberts.com",
+			location : "Chicago, IL"
 		},
-		welcomeMessage: "Welcome!",
 		skills: [
 			"awesomeness", "programming", "teaching", "C", "C++", "Java", "HTML", "CSS", "Bootstrap"
 		],
 		biopic: "http://shawnajroberts.files.wordpress.com/2014/05/shawna-cropped.jpg",
 		schools: [
 			{
-				"name" : "Hampshire College",
-				"location" : "Amherst, MA",
-				"degree" : "BA",
-				"majors" : ["Interpersonal Communication", "Computer Science", "Theater Management"],
-				"dates" : "2012",
-				"url" : "https://hampshire.edu"
+				name : "Hampshire College",
+				location : "Amherst, MA",
+				degree : "BA",
+				majors : ["Interpersonal Communication", "Computer Science", "Theater Management"],
+				dates : "2012",
+				url : "https://hampshire.edu"
 			}
 		],
 		onlineCourses: [
 			{
-				"title" : "JavaScript Basics",
-				"school" : "Udacity",
-				"date" : "2015",
-				"url" : "https://udacity.com/course/ud804"
+				title : "JavaScript Basics",
+				school : "Udacity",
+				date : "2015",
+				url : "https://udacity.com/course/ud804"
 			},
 			{
-				"title" : "Intro to HTML and CSS",
-				"school" : "Udacity",
-				"date" : "2015",
-				"url" : "https://www.udacity.com/course/ud304"
+				title : "Intro to HTML and CSS",
+				school : "Udacity",
+				date : "2015",
+				url : "https://www.udacity.com/course/ud304"
 			},
 			{
-				"title" : "Fundamentals of Design",
-				"school" : "Code School",
-				"date" : "2015",
-				"url" : "https://www.codeschool.com/courses/fundamentals-of-design"
+				title : "Fundamentals of Design",
+				school : "Code School",
+				date : "2015",
+				url : "https://www.codeschool.com/courses/fundamentals-of-design"
 			}
 		],
 		jobs: [
 			{
-				"employer" : "Automattic",
-				"title" : "Happiness Engineer",
-				"location" : "",
-				"dates" : "2014 - current",
-				"description" : "Build relationships based on trust which result in happy, passionate, loyal customers and colleagues. Help people use Automattic’s products, including WordPress.com, Jetpack, and Gravatar. Troubleshoot, investigate, and create detailed bug reports including screenshots, steps to reproduce, and number of users affected. Create, update and edit support documentation. Build a community of support by sharing knowledge and insight amongst team members.",
-				"url" : "https://automattic.com"
+				employer : "Automattic",
+				title : "Happiness Engineer",
+				location : "",
+				dates : "2014 - current",
+				description : "Build relationships based on trust which result in happy, passionate, loyal customers and colleagues. Help people use Automattic’s products, including WordPress.com, Jetpack, and Gravatar. Troubleshoot, investigate, and create detailed bug reports including screenshots, steps to reproduce, and number of users affected. Create, update and edit support documentation. Build a community of support by sharing knowledge and insight amongst team members.",
+				url : "https://automattic.com"
 			},
 			{
-				"employer" : "Hampshire College",
-				"title" : "Network Technician",
-				"location" : "Amherst, MA",
-				"dates" : "2012 - 2014",
-				"description" : "Assist Network Engineer in design, construction, and maintenance of campus network and phone infrastructure. Oversee physical network implementation. Provide support and troubleshooting for VoIP, POTS, CATV, and network infrastructure. Provided technical support to faculty and staff members.",
+				employer : "Hampshire College",
+				title : "Network Technician",
+				location : "Amherst, MA",
+				dates : "2012 - 2014",
+				description : "Assist Network Engineer in design, construction, and maintenance of campus network and phone infrastructure. Oversee physical network implementation. Provide support and troubleshooting for VoIP, POTS, CATV, and network infrastructure. Provided technical support to faculty and staff members.",
 				"url" : "https://hampshire.edu"
 			}
 		],
 		projects: [
 			{
-				"title" : "Mockup to Website",
-				"dates" : "2015",
-				"description" : "Develop a responsive website from a PDF design mockup.",
-				"images" : ["images/197x148.gif"],
-				"url" : "https://github.com/shawnajroberts/udacity-front-end-dev/tree/master/Projects/Project%201"
+				title : "Mockup to Website",
+				dates : "2015",
+				description : "Develop a responsive website from a PDF design mockup.",
+				images : ["images/197x148.gif"],
+				url : "https://github.com/shawnajroberts/udacity-front-end-dev/tree/master/Projects/Project%201"
 			}
 		]
 	};
@@ -81,6 +80,9 @@ $(function() {
 	};
 
 	var view = {
+		init: function() {
+
+		},
 		render: function() {
 
 		}
@@ -138,7 +140,6 @@ var bio = {
 }
 
 var education = {
-	,
 	"display" : function() {
 		for( school in education.schools ) {
 			$("#education").append(HTMLschoolStart);
