@@ -99,8 +99,7 @@ $(function() {
 		init: function() {
 			var formattingString,
 					currentList,
-					currentObject,
-					$skills;
+					currentObject;
 
 			this.header = $("#header");
 			this.contacts = $("#topContacts");
@@ -141,10 +140,10 @@ $(function() {
 			if( currentList.length > 0 ) {
 				this.header.append(HTMLskillsStart);
 
-				$skills = $("#skills");
+				currentObject = $("#skills");
 
 				for( skill in currentList ) {
-					$skills.append( HTMLskills.replace( "%data%", currentList[skill] ) );
+					currentObject.append( HTMLskills.replace( "%data%", currentList[skill] ) );
 				}
 			}
 		},
