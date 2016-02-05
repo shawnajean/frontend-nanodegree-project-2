@@ -10,16 +10,14 @@
   Uncomment the <script> tag below when you're ready to add an interactive
   Google Map to your resume!
   -->
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
   <meta name="viewport" content="width=device-width">
 </head>
-<body>
+<body unresolved>
   <div id="main">
     <div id="header" class="center-content clearfix">
-      <h1 id="name"></h1>
-      <span id="role"></span><hr/>
-      <img src="" id="biopic">
       <ul id="topContacts" class='flex-box'></ul>
     </div>
     <div style='clear: both;'></div>
@@ -73,7 +71,7 @@
     */
 
 
-    /*if(document.getElementsByClassName('flex-item').length === 0) {
+    if(document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('topContacts').style.display = 'none';
     }
     if(document.getElementsByTagName('h1').length === 0) {
@@ -93,7 +91,7 @@
     }
     if(document.getElementById('map') === null) {
       document.getElementById('mapDiv').style.display = 'none';
-    }*/
+    }
   </script>
 </body>
 </html>
