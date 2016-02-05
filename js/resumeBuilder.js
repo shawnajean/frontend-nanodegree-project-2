@@ -86,6 +86,9 @@ $(function() {
 		},
 		getSchools: function() {
 			return data.schools;
+		},
+		getOnlineCourses: function() {
+			return data.onlineCourses;
 		}
 	};
 
@@ -98,7 +101,8 @@ $(function() {
 					$skills,
 					schoolsList,
 					schoolNameFormatted,
-					currentSchool;
+					courseList,
+					currentObject;
 
 			this.header = $("#header");
 			this.contactsList = $("#topContacts");
@@ -111,6 +115,7 @@ $(function() {
 			view.renderBio();
 			view.renderSkills();
 			view.renderSchools();
+			view.renderOnlineCourses();
 		},
 		renderBio: function() {
 			bio = controller.getBio();
@@ -149,16 +154,37 @@ $(function() {
 			for( school in schoolsList ) {
 				this.education.append(HTMLschoolStart);
 
-				currentSchool = $(".education-entry:last");
+				currentObject = $(".education-entry:last");
 
 				schoolNameFormatted = HTMLschoolName.replace("%data%", schoolsList[school].name);
 				schoolNameFormatted = schoolNameFormatted.replace("%url%", schoolsList[school].url);
 				schoolNameFormatted = schoolNameFormatted.concat(HTMLschoolDegree.replace("%data%", schoolsList[school].degree));
 
-				currentSchool.append(schoolNameFormatted);
-				currentSchool.append(HTMLschoolDates.replace("%data%", schoolsList[school].dates));
-				currentSchool.append(HTMLschoolLocation.replace("%data%", schoolsList[school].location));
-				currentSchool.append(HTMLschoolMajor.replace("%data%", schoolsList[school].majors));
+				currentObject.append(schoolNameFormatted);
+				currentObject.append(HTMLschoolDates.replace("%data%", schoolsList[school].dates));
+				currentObject.append(HTMLschoolLocation.replace("%data%", schoolsList[school].location));
+				currentObject.append(HTMLschoolMajor.replace("%data%", schoolsList[school].majors));
+			}
+		},
+		renderOnlineCourses: function() {
+			courseList = controller.getOnlineCourses();
+
+			if( courseList.length > 0 ) {
+				this.education.append(HTMLonlineClasses);
+
+				for( course in courseList ) {
+					this.education.append(HTMLonlineStart);
+
+					currentObject = $(".online-entry:last");
+
+					courseNameFormatted = HTMLonlineTitle.replace("%data%", courseList[course].title);
+					courseNameFormatted = courseNameFormatted.replace("%url%", courseList[course].url);
+					courseNameFormatted = courseNameFormatted.concat(HTMLonlineSchool.replace("%data%", courseList[course].school));
+
+					currentObject.append(courseNameFormatted);
+					currentObject.append(HTMLonlineDates.replace("%data%", courseList[course].date));
+					//currentObject.append(HTMLonlineURL.replace("%data%", courseList[course].url));
+				}
 			}
 		}
 	};
