@@ -1,19 +1,20 @@
 $(function() {
 	var data = {
-		name: "Shawna Jean",
-		role: "Web Developer",
-		contacts: {
-			mobile : "555.555.5555",
-			email : "hello@shawnajroberts.com",
-			github : "shawnajroberts",
-			twitter : "shawnajeanr",
-			blog : "http://shawnajroberts.com",
-			location : "Chicago, IL"
+		bio: {
+			name: "Shawna Jean",
+			role: "Web Developer",
+			biopic: "http://shawnajroberts.files.wordpress.com/2014/05/shawna-cropped.jpg",
+			contacts: {
+				mobile : "555.555.5555",
+				email : "hello@shawnajroberts.com",
+				github : "shawnajroberts",
+				twitter : "shawnajeanr",
+				blog : "http://shawnajroberts.com"
+			}
 		},
 		skills: [
 			"awesomeness", "programming", "teaching", "C", "C++", "Java", "HTML", "CSS", "Bootstrap"
 		],
-		biopic: "http://shawnajroberts.files.wordpress.com/2014/05/shawna-cropped.jpg",
 		schools: [
 			{
 				name : "Hampshire College",
@@ -75,7 +76,7 @@ $(function() {
 
 	var controller = {
 		init: function() {
-			view.render();
+			view.init();
 		},
 		getBio: function() {
 			return data.bio;
@@ -84,6 +85,12 @@ $(function() {
 
 	var view = {
 		init: function() {
+			var bio,
+					contacts,
+					formattedMobile;
+
+			this.header = $("#header");
+			this.contactsList = $("#topContacts");
 
 			view.render();
 		},
@@ -91,11 +98,26 @@ $(function() {
 			view.renderBio();
 		},
 		renderBio: function() {
-			
+			bio = controller.getBio();
+			contacts = bio.contacts;
+
+			this.header.prepend( HTMLbioPic.replace( "%data%", bio.biopic ) );
+			this.header.prepend( HTMLheaderRole.replace( "%data%", bio.role ) );
+			this.header.prepend( HTMLheaderName.replace( "%data%", bio.name ) );
+
+			formattedMobile = contacts.mobile.replace( /\./g, "" );
+			formattedMobile = HTMLmobile.replace( /%formattedData%/g, formattedMobile );
+			formattedMobile = formattedMobile.replace( /%data%/g, contacts.mobile );
+
+			this.contactsList.append( formattedMobile );
+			this.contactsList.append( HTMLemail.replace( /%data%/g, contacts.email ) );
+			this.contactsList.append( HTMLgithub.replace( /%data%/g, contacts.github ) );
+			this.contactsList.append( HTMLtwitter.replace( /%data%/g, contacts.twitter ) );
+			this.contactsList.append( HTMLblog.replace( /%data%/g, contacts.blog ) );
 		}
 	};
 
-
+	controller.init();
 });
 
 
@@ -110,7 +132,7 @@ $(function() {
 
 
 
-
+/*
 var bio = {
 	"display" : function() {
 		$("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
@@ -120,7 +142,7 @@ var bio = {
 		var formattedMobile = bio.contacts.mobile.replace(/\./g, "");
 		formattedMobile = HTMLmobile.replace(/%formattedData%/g, formattedMobile);
 		formattedMobile = formattedMobile.replace(/%data%/g, bio.contacts.mobile);
-		//$("#topContacts").append(formattedMobile);
+		$("#topContacts").append(formattedMobile);
 		$("#topContacts").append(HTMLemail.replace(/%data%/g, bio.contacts.email));
 		$("#topContacts").append(HTMLgithub.replace(/%data%/g, bio.contacts.github));
 		$("#topContacts").append(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
@@ -213,3 +235,4 @@ $("#mapDiv").append(googleMap);
 $(document).click(function(loc) {
 	logClicks(loc.pageX, loc.pageY);
 });
+*/
