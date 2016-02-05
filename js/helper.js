@@ -90,9 +90,10 @@ var map;    // declares a global map variable
 /*
 Start here! initializeMap() is called when page is loaded.
 */
-function initializeMap() {
+function initializeMap( controller ) {
+  console.log( controller );
 
-  var locations;
+  var locations, currentList;
 
   var mapOptions = {
     disableDefaultUI: true
@@ -113,18 +114,20 @@ function initializeMap() {
     var locations = [];
 
     // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+    locations.push(controller.getBio().contacts.location);
 
     // iterates through school locations and appends each location to
     // the locations array
-    for (var school in education.schools) {
-      locations.push(education.schools[school].location);
+    currentList = controller.getSchools();
+    for (var school in currentList ) {
+      locations.push(currentList[school].location);
     }
 
     // iterates through work locations and appends each location to
     // the locations array
-    for (var job in work.jobs) {
-      locations.push(work.jobs[job].location);
+    currentList = controller.getJobs();
+    for (var job in currentList) {
+      locations.push(currentList[job].location);
     }
 
     return locations;
@@ -217,16 +220,9 @@ function initializeMap() {
 
 }
 
-/*
-Uncomment the code below when you're ready to implement a Google Map!
-*/
-/*
-// Calls the initializeMap() function when the page loads
-window.addEventListener('load', initializeMap);
-
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
 window.addEventListener('resize', function(e) {
   // Make sure the map bounds get updated on page resize
   map.fitBounds(mapBounds);
-});*/
+});

@@ -9,7 +9,8 @@ $(function() {
 				email : "hello@shawnajroberts.com",
 				github : "shawnajroberts",
 				twitter : "shawnajeanr",
-				blog : "http://shawnajroberts.com"
+				blog : "http://shawnajroberts.com",
+				location : "Chicago, IL"
 			}
 		},
 		skills: [
@@ -114,6 +115,8 @@ $(function() {
 
 			this.education = $("#education");
 
+			this.map = $("#mapDiv");
+
 			view.render();
 		},
 		render: function() {
@@ -123,6 +126,7 @@ $(function() {
 			view.renderProjects();
 			view.renderSchools();
 			view.renderOnlineCourses();
+			view.renderMap();
 		},
 		renderBio: function() {
 			currentList = controller.getBio();
@@ -239,25 +243,18 @@ $(function() {
 					//currentObject.append( HTMLonlineURL.replace( "%data%", currentList[course].url ) );
 				}
 			}
+		},
+		renderMap: function() {
+			this.map.append(googleMap);
 		}
 	};
 
 	controller.init();
+
+	// Calls the initializeMap() function when the page loads
+	window.addEventListener('load',
+													(function( controller ) {
+														return initializeMap( controller );
+													})( controller )
+	);
 });
-
-
-
-
-/*
-
-
-bio.display();
-work.display();
-education.display();
-projects.display();
-$("#mapDiv").append(googleMap);
-
-$(document).click(function(loc) {
-	logClicks(loc.pageX, loc.pageY);
-});
-*/
