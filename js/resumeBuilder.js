@@ -80,6 +80,9 @@ $(function() {
 		},
 		getBio: function() {
 			return data.bio;
+		},
+		getSkills: function() {
+			return data.skills;
 		}
 	};
 
@@ -87,7 +90,9 @@ $(function() {
 		init: function() {
 			var bio,
 					contacts,
-					formattedMobile;
+					formattedMobile,
+					skillsList,
+					$skills;
 
 			this.header = $("#header");
 			this.contactsList = $("#topContacts");
@@ -96,6 +101,7 @@ $(function() {
 		},
 		render: function() {
 			view.renderBio();
+			view.renderSkills();
 		},
 		renderBio: function() {
 			bio = controller.getBio();
@@ -114,6 +120,19 @@ $(function() {
 			this.contactsList.append( HTMLgithub.replace( /%data%/g, contacts.github ) );
 			this.contactsList.append( HTMLtwitter.replace( /%data%/g, contacts.twitter ) );
 			this.contactsList.append( HTMLblog.replace( /%data%/g, contacts.blog ) );
+		},
+		renderSkills: function() {
+			skillsList = controller.getSkills();
+
+			if( skillsList.length > 0 ) {
+				this.header.append(HTMLskillsStart);
+
+				$skills = $("#skills");
+
+				for( skill in skillsList ) {
+					$skills.append( HTMLskills.replace( "%data%", skillsList[skill] ) );
+				}
+			}
 		}
 	};
 
@@ -123,41 +142,10 @@ $(function() {
 
 
 
-
-
-
-
-
-
-
-
-
 /*
 var bio = {
 	"display" : function() {
-		$("#header").prepend(HTMLbioPic.replace("%data%", bio.biopic));
-		$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
-		$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 
-		var formattedMobile = bio.contacts.mobile.replace(/\./g, "");
-		formattedMobile = HTMLmobile.replace(/%formattedData%/g, formattedMobile);
-		formattedMobile = formattedMobile.replace(/%data%/g, bio.contacts.mobile);
-		$("#topContacts").append(formattedMobile);
-		$("#topContacts").append(HTMLemail.replace(/%data%/g, bio.contacts.email));
-		$("#topContacts").append(HTMLgithub.replace(/%data%/g, bio.contacts.github));
-		$("#topContacts").append(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
-		$("#topContacts").append(HTMLblog.replace(/%data%/g, bio.contacts.blog));
-		//$("#topContacts").append(HTMLlocation.replace(/%data%/g, bio.contacts.location));
-
-
-		//$("#header").append(HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage));
-
-		if( bio.skills.length > 0 ) {
-			$("#header").append(HTMLskillsStart);
-			for( skill in bio.skills ) {
-				$("#skills").append(HTMLskills.replace("%data%", bio.skills[skill]));
-			}
-		}
 
 		$("#footerContacts").append(formattedMobile);
 		$("#footerContacts").append(HTMLemail.replace(/%data%/g, bio.contacts.email));
